@@ -1,0 +1,16 @@
+name: Checkmarx SCA Scan
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Checkmarx Action
+      uses: checkmarx-ts/checkmarx-github-action@<version>
+      with:
+        cxAction: ScaScan
+        cxScaAccount: protego
+        cxScaUsername: rory.mcentee@protegotrust.com
+        cxScaPassword: ${{ secrets.CX_PASSWORD }}
+        cxExecutePackageDependency: true
