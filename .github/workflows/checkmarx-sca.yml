@@ -31,7 +31,7 @@ jobs:
         sca_api_url: https://api.scacheckmarx.com
         sca_app_url: https://sca.scacheckmarx.com
         sca_access_control_url: https://platform.checkmarx.net
-        sca_tenant: <SCATenant>  # <-- Insert Checkmarx CxSCA Tenant
+        sca_tenant: protego  # <-- Insert Checkmarx CxSCA Tenant
         sca_username: ${{ secrets.CHECKMARX_SCA_USERNAME }} # To be stored in GitHub Secrets.
         sca_password: ${{ secrets.CHECKMARX_SCA_PASSWORD }} # To be stored in GitHub Secrets.
         break_build: false
