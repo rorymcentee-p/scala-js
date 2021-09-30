@@ -21,7 +21,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: Security Testing
     steps:
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
     - name: Checkout
       uses: actions/checkout@v2
     - name: Checkmarx CxFlow Action
@@ -34,12 +41,6 @@ jobs:
         sca_tenant: protego  # <-- Insert Checkmarx CxSCA Tenant
         sca_username: ${{ secrets.CHECKMARX_SCA_USERNAME }} # To be stored in GitHub Secrets.
         sca_password: ${{ secrets.CHECKMARX_SCA_PASSWORD }} # To be stored in GitHub Secrets.
-        break_build: false
+        break_build: true
         scanners: sca
-        bug_tracker: Sarif
         params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} --repo-url="<GitHubRepoUrl>"
-
-    - name: Upload SARIF file
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: cx.sarif
